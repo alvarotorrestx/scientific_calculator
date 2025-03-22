@@ -16,7 +16,20 @@ This is a **scientific calculator** built using C++ and `wxWidgets`. The applica
 ---
 
 ## Screenshots
-*(Coming soon)*
+#### **Default Layout:**
+![image](https://github.com/user-attachments/assets/c919d3af-7e07-4106-8769-2c436681dce4)
+
+
+#### **Trigonometric Function: (Radians)**
+![image](https://github.com/user-attachments/assets/4bcfed90-a715-4dc5-8a9d-c44a2a7f3ae2)
+![image](https://github.com/user-attachments/assets/acc8224f-ed84-4800-bcfa-dd1d478b430e)
+
+
+#### **PEMDAS: (Radians)**
+![image](https://github.com/user-attachments/assets/6db64a8e-ba4d-47f6-b2c4-d1a2f700a8b8)
+![image](https://github.com/user-attachments/assets/186f086a-52d2-4faa-a874-7b15211a9477)
+
+
 
 ---
 

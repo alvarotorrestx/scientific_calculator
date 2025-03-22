@@ -3,8 +3,51 @@
 
 wxButton* ButtonFactory::CreateButton(wxWindow* parent, wxWindowID id, wxString label, const wxPoint& pos, const wxSize& size)
 {
-    // Instantiate new button with parameters
-    wxButton* button = new wxButton(parent, id, label, pos, size);
+    // Instantiate new button with NO borders & NO system theming
+    wxButton* button = new wxButton(parent, id, label, pos, size, wxBORDER_NONE | wxBU_EXACTFIT);
+
+    // Color variables
+    wxColour bgColor, fgColor, hoverBgColor, hoverFgColor;
+
+    // Style Buttons Based on Label
+    if (isdigit(label[0])) {  // Number buttons
+        bgColor = wxColour(55, 73, 85);
+        fgColor = wxColour(215, 215, 215);
+
+        hoverBgColor = wxColour(118, 209, 255);
+        hoverFgColor = wxColour(0, 0, 0);
+    }
+    else { // Operator / function buttons
+        bgColor = wxColour(118, 209, 255);
+        fgColor = wxColour(0, 0, 0);
+
+        hoverBgColor = fgColor;
+        hoverFgColor = bgColor;
+    }
+
+    // Set initial colors
+    button->SetBackgroundColour(bgColor);
+    button->SetForegroundColour(fgColor);
+    button->SetFont(wxFont(12, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+
+    // Handle hover button colors
+    button->Bind(wxEVT_ENTER_WINDOW, [button, hoverBgColor, hoverFgColor](wxMouseEvent&) {
+        button->SetBackgroundColour(hoverBgColor);
+        button->SetForegroundColour(hoverFgColor);
+        button->SetOwnBackgroundColour(hoverBgColor);
+        button->Refresh();
+        });
+
+    // Handle hover exit colors
+    button->Bind(wxEVT_LEAVE_WINDOW, [button, bgColor, fgColor](wxMouseEvent&) {
+        button->SetBackgroundColour(bgColor);
+        button->SetForegroundColour(fgColor);
+        button->SetOwnBackgroundColour(bgColor);
+        button->Refresh();
+        });
+
+    // Set cursor to pointer when hovering
+    button->SetCursor(wxCursor(wxCURSOR_HAND));
 
     // Bind button click event to OnButtonClick in Window
     Window* window = dynamic_cast<Window*>(parent);

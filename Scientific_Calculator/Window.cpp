@@ -8,11 +8,19 @@ wxEND_EVENT_TABLE()
 
 Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator-inator", wxPoint(250, 250), wxSize(500, 650))
 {
+	// Set frame bg color
+	this->SetBackgroundColour(wxColor(25,28,30));
+
 	// Main sizer to wrap entire calculator
 	wxBoxSizer* mainWrapperSizer = new wxBoxSizer(wxVERTICAL);
 	
 	// Create and add text input to main sizer
-	textInput = new wxTextCtrl(this, TEXT_INPUT_BUTTON_ID, "", wxDefaultPosition, wxSize(500, 100), wxTE_RIGHT);
+	textInput = new wxTextCtrl(this, TEXT_INPUT_BUTTON_ID, "", wxDefaultPosition, wxSize(500, 100), wxTE_RIGHT | wxBORDER_NONE);
+	textInput->SetBackgroundColour(wxColor(55, 73, 85));
+	textInput->SetForegroundColour(wxColor(215, 215, 215));
+	textInput->SetFont(wxFont(16, wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	// Set cursor to pointer when hovering
+	textInput->SetCursor(wxCursor(wxCURSOR_HAND));
 	mainWrapperSizer->Add(textInput, 0, wxEXPAND | wxALL, 10);
 
 	// Create the top row sizer for first row of unary operator buttons, clear and delete btns
